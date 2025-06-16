@@ -1,9 +1,20 @@
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 function Site(){
+
+        useEffect(() => {
+        AOS.init({ duration: 1200 });
+    }, []);
+
+
+
     return(
         
         <>
             <div class="fixed left-0 top-0 -z-10 h-full w-full">
-                <div class="absolute top-0 z-[-2] h-screen w-screen bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"></div>
+                <div class="relative h-full w-full bg-slate-950"><div class="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div></div>
             </div>
             
     
@@ -11,14 +22,14 @@ function Site(){
             <div className="relative mx-auto h-screen w-full max-w-8xl px-6 md:px-8 lg:px-12 ">
                 <div className=" text-white">
                     <header className=" shadow">
-                        <div className="container mx-auto px-4 py-6 flex justify-between items-center fixed left-0 right-0 top-0 ">
+                        <div className="container mx-auto px-4 py-6 flex justify-between items-center fixed left-0 right-0 top-0 bg-black/10 backdrop-blur-2xl z-50">
                             <div className="text-xl font-bold">YONG</div>
                             <nav className="hidden md:block">
                                 <ul className="flex space-x-6">
-                                    <li><a href="#" className="hover:text-blue-500">Home</a></li>
-                                    <li><a href="#" className="hover:text-blue-500">About</a></li>
-                                    <li><a href="#" className="hover:text-blue-500">Services</a></li>
-                                    <li><a href="#" className="hover:text-blue-500">Contact</a></li>
+                                    <li><a href="#main" className="hover:text-blue-500">Home</a></li>
+                                    <li><a href="#feat" className="hover:text-blue-500">features</a></li>
+                                    <li><a href="#sign" className="hover:text-blue-500">sign up</a></li>
+                                    <li><a href="#sign" className="hover:text-blue-500">Contact</a></li>
                                 </ul>
                             </nav>
                             <button className="md:hidden">
@@ -29,7 +40,7 @@ function Site(){
                         </div>
                     </header>
 
-                    <section className="pt-56 h-screen">
+                    <section className="pt-56 h-screen" id="main">
                         <div className="container mx-auto px-4 text-center">
                             <h1 className="text-4xl md:text-5xl font-bold mb-6">Talk Freely, Anytime</h1>
                             <p className="text-lg md:text-xl max-w-2xl mx-auto mb-8 text-gray-400">A app makes messaging fast, easy, and secure — built for smooth conversations without Any interruptions.</p>
@@ -40,13 +51,15 @@ function Site(){
                         </div>
                     </section>
 
+                    <div id="feat"></div>
 
-                    <section className="pb-16">
+
+                    <section className="pb-16" data-aos="fade-up">
                         <div className="container mx-auto px-4">
                             <h2 className="text-3xl font-bold text-center mb-12">Features</h2>
                             <div className="grid md:grid-cols-3 gap-8">
 
-                                <div className="bg-slate-900 p-6 rounded-lg shadow-sm shadow-gray-700">
+                                <div className="bg-slate-900 p-6 rounded-lg shadow-sm shadow-gray-700" data-aos="flip-up">
                                     <div className="w-12 h-12  rounded-full flex items-center justify-center mb-4">
                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -57,7 +70,7 @@ function Site(){
                                 </div>
                                 
 
-                                <div className="bg-slate-900 p-6 rounded-lg shadow-sm">
+                                <div className="bg-slate-900 p-6 rounded-lg shadow-sm" data-aos="flip-up">
                                     <div className="w-12 h-12  rounded-full flex items-center justify-center mb-4">
                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
@@ -68,7 +81,7 @@ function Site(){
                                 </div>
                                 
 
-                                <div className="bg-slate-900 p-6 rounded-lg shadow-sm">
+                                <div className="bg-slate-900 p-6 rounded-lg shadow-sm" data-aos="flip-up">
                                     <div className="w-12 h-12  rounded-full flex items-center justify-center mb-4">
                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
@@ -77,14 +90,47 @@ function Site(){
                                     <h3 className="text-xl font-semibold mb-2">Modern Design</h3>
                                     <p className="text-gray-400">Clean, minimal design that follows modern web design principles.</p>
                                 </div>
+
+                                <div className="bg-slate-900 p-6 rounded-lg shadow-sm" data-aos="flip-up">
+                                    <div className="w-12 h-12  rounded-full flex items-center justify-center mb-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
+                                    <h3 className="text-xl font-semibold mb-2">Secure Messaging</h3>
+                                    <p className="text-gray-400">All conversations are protected with end-to-end encryption, ensuring your data stays private and secure.</p>
+                                </div>
+
+
+                                <div className="bg-slate-900 p-6 rounded-lg shadow-sm" data-aos="flip-up">
+                                    <div className="w-12 h-12  rounded-full flex items-center justify-center mb-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
+                                    <h3 className="text-xl font-semibold mb-2">Cross-Platform Support</h3>
+                                    <p className="text-gray-400">Chat seamlessly across devices — whether on mobile, tablet, or desktop — without missing a message.</p>
+                                </div>
+
+
+                                <div className="bg-slate-900 p-6 rounded-lg shadow-sm" data-aos="flip-up">
+                                    <div className="w-12 h-12  rounded-full flex items-center justify-center mb-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
+                                    <h3 className="text-xl font-semibold mb-2">Modern Design</h3>
+                                    <p className="text-gray-400">Clean, minimal design that follows modern web design principles.</p>
+                                </div>
+
                             </div>
                         </div>
                     </section>
 
-                    <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400"></div>
+                    <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400" id="sign"></div>
 
                     <section className="py-16  text-white">
-                        <div className="container mx-auto px-4 text-center">
+                        <div className="container mx-auto px-4 text-center" data-aos="fade-up" data-aos-duration="500">
                             <h2 className="text-3xl font-bold mb-6">Ready to get started?</h2>
                             <p className="text-xl mb-8 max-w-2xl mx-auto text-gray-400">Join thousands of users who are already using our platform to build amazing websites.</p>
                             <a href="#" className="bg-white text-blue-500 hover:bg-gray-100 px-8 py-3 rounded-md font-medium">Sign Up Now</a>
