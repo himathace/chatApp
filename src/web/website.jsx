@@ -130,7 +130,7 @@ function Site(){
                     <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400" id="sign"></div>
 
                     <section className="py-16  text-white">
-                        <div className="container mx-auto px-4 text-center" data-aos="fade-up" data-aos-duration="500">
+                        <div className="container mx-auto px-4 text-center" data-aos="fade-up">
                             <h2 className="text-3xl font-bold mb-6">Ready to get started?</h2>
                             <p className="text-xl mb-8 max-w-2xl mx-auto text-gray-400">Join thousands of users who are already using our platform to build amazing websites.</p>
                             <a href="#" className="bg-white text-blue-500 hover:bg-gray-100 px-8 py-3 rounded-md font-medium">Sign Up Now</a>
