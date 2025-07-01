@@ -18,6 +18,11 @@ function Register(){
     const navigate=useNavigate()
 
 
+    const[help,updatehelp]=useState("")
+    const[outline,updateoutline]=useState("outlined-basic")
+    const[passwrror,updatepass]=useState(false)
+
+
     const hadleregister=()=>{
         if(Password==reenterpassword){
             createUserWithEmailAndPassword(auth,email,Password)
@@ -26,10 +31,13 @@ function Register(){
             })
             .catch((error)=>{
                 alert(error.message)
+                updatepass(true)
             })
         }
         else{
-            alert("password not match")
+            updatehelp("Incorrect Match")
+            updateoutline("outlined-error-helper-text")
+            updatepass(true)
         }
     }
 
@@ -52,18 +60,22 @@ function Register(){
                 <div className="text-center text-2xl  mb-2 font-medium">Create account</div>
                 <div className="text-slate-500 mb-12 text-center text-sm">Please enter your details to sign up</div>
                 <div className="mb-6">
-                    <TextField id="outlined-basic" label="Email" variant="outlined" sx={{width:'300px'}} inputProps={{sx:{height:17}}} onChange={(event)=>{
+                    <TextField id="outlined-basic" label="Email"  error={passwrror} variant="outlined" sx={{width:'300px'}} inputProps={{sx:{height:17}}} onChange={(event)=>{
                         updateemail(event.target.value)
+                        updatepass(false)
                     }} />
                 </div>
                 <div className="mb-6">
-                    <TextField id="outlined-basic" label="Password" variant="outlined" sx={{width:'300px'}}  inputProps={{sx:{height:17}}} onChange={(event)=>{
+                    <TextField id="outlined-basic" label="Password" error={passwrror} variant="outlined" sx={{width:'300px'}}  inputProps={{sx:{height:17}}} onChange={(event)=>{
                         updatepassword(event.target.value)
+                        updatepass(false)
                     }} />
                 </div>
                 <div className="mb-4">
-                    <TextField id="outlined-basic" label="Confirm Password" variant="outlined" sx={{width:'300px'}} inputProps={{sx:{height:17}}} onChange={(event)=>{
+                    <TextField id={outline} label="Confirm password" error={passwrror} variant="outlined" helperText={help} sx={{width:'300px'}} inputProps={{sx:{height:17}}} onChange={(event)=>{
                         updarereenterpassword(event.target.value)
+                        updatepass(false)
+                        updatehelp("")
                     }} />
                 </div>
                 <div className="text-left  mb-4">

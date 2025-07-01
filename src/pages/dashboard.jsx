@@ -1,5 +1,59 @@
+import { useState } from "react"
+import { collection,addDoc,serverTimestamp} from "firebase/firestore"
+import { db } from "../firebase/fire"
+import { auth } from "../firebase/fire"
+import { onAuthStateChanged } from "firebase/auth"
+import { signOut } from "firebase/auth"
+import { useNavigate } from "react-router-dom"
+
+
 
 function Dash(){
+    
+    const[message,setmessage]=useState("")
+    const navigate=useNavigate()
+
+    const usersignout=async ()=>{  // sign out the user 
+ 
+        try{
+            await signOut(auth)
+            alert("user sign out")
+            navigate("/")
+        }
+        catch(error){
+            alert(error)
+        }
+    }
+
+
+    onAuthStateChanged(auth,(user)=>{  // check user authentication status
+        if(user){
+            console.log(user.email)
+        }else{
+            console.log("no user")
+        }
+    })
+
+
+
+    const sendmessage= async ()=>{  // send message to firestore
+
+        try{
+
+            await addDoc(collection(db,"message"),{
+                text:message,
+                sender:"user1",
+                timestamp:serverTimestamp()
+            })
+            alert("message send")
+        }
+        catch(error){
+            alert(error)
+        }
+    }
+
+    
+
 
     return(
 
@@ -16,6 +70,7 @@ function Dash(){
                                 <p className="text-sm text-gray-500">Online</p>
                             </div>
                         </div>
+                        <button onClick={usersignout}>logout</button>
                     </div>
 
                     <div className="p-4">
@@ -195,6 +250,10 @@ function Dash(){
                                     type="text" 
                                     placeholder="Type a message..." 
                                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                                    value={message}
+                                    onChange={(e)=>{
+                                        setmessage(e.target.value)
+                                    }}
                                 />
                             </div>
                             <button className="p-2 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-100">
@@ -202,7 +261,7 @@ function Dash(){
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1.01M15 10h1.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                 </svg>
                             </button>
-                            <button className="bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition-colors">
+                            <button className="bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition-colors" onClick={sendmessage}>
                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
                                 </svg>
